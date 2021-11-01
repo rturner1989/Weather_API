@@ -32,5 +32,13 @@ router.get("/current", cache("15 minutes"), async (req, res) => {
         res.status(500).json({ success: false, message: error.message });
     }
 });
+router.get("/forecast", cache("15 minutes"), async (req, res) => {
+    try {
+        const data = await request(API_FORECAST_URL, req.query);
+        res.status(200).json({ success: true, results: data });
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+});
 
 module.exports = router;
