@@ -19,7 +19,12 @@ app.set("trust proxy", 1);
 
 app.use("/weather", require("./Routes"));
 
-app.use(cors());
+const corsOptions = {
+    origin: "https://rturner1989.github.io",
+    optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 
 app.listen(port, () => {
     console.log(`server is running on port - ${port}`);
